@@ -1,3 +1,5 @@
+const { useState, useRef } = React;
+
 const Hero = () => {
   return (
     <section className="flex flex-col justify-center relative pt-24 md:pt-32 pb-10">
@@ -47,6 +49,9 @@ const Hero = () => {
 };
 
 const Projects = () => {
+  const [hoveredImage, setHoveredImage] = useState(null);
+  const previewRef = useRef(null);
+
   const projects = [
     {
       id: "01",
@@ -55,6 +60,8 @@ const Projects = () => {
         "Expense splitter with custom expense splitting, multi-item expenses, and easy balance settlments.",
       tech: "Next.js, PostgreSQL",
       url: "https://github.com/marcocharco/expense-splitter-app",
+      image:
+        "https://github.com/user-attachments/assets/3e20c99d-0217-4b3c-91fd-4ad0abf1df88",
     },
     {
       id: "02",
@@ -63,6 +70,7 @@ const Projects = () => {
         "Pull request visualization tool leveraging LSPs and Tree-sitter, providing better context during code reviews.",
       tech: "Go, Tree-sitter",
       url: "https://github.com/marcocharco/pr-review-app",
+      image: "assets/contify.png",
     },
     {
       id: "03",
@@ -85,6 +93,22 @@ const Projects = () => {
             href={project.url}
             target="_blank"
             rel="noopener noreferrer"
+            onMouseEnter={(e) => {
+              if (project.image) {
+                if (previewRef.current) {
+                  previewRef.current.style.left = `${e.clientX + 15}px`;
+                  previewRef.current.style.top = `${e.clientY - 15}px`;
+                }
+                setHoveredImage(project.image);
+              }
+            }}
+            onMouseMove={(e) => {
+              if (project.image && previewRef.current) {
+                previewRef.current.style.left = `${e.clientX + 15}px`;
+                previewRef.current.style.top = `${e.clientY - 15}px`;
+              }
+            }}
+            onMouseLeave={() => setHoveredImage(null)}
             className="group grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-4 p-4 -mx-4 rounded-xl transition-colors hover:bg-black/5 items-start cursor-pointer"
           >
             <div className="md:col-span-4 flex flex-col justify-start pointer-events-none">
@@ -103,6 +127,26 @@ const Projects = () => {
             </div>
           </a>
         ))}
+      </div>
+
+      {/* Floating Hover Image Preview */}
+      <div
+        ref={previewRef}
+        className={`fixed z-50 pointer-events-none w-96 md:w-[30rem] shadow-[0_20px_40px_rgba(26,29,32,0.15)] rounded-xl overflow-hidden border border-black/5 transition-opacity duration-200 ${hoveredImage ? "opacity-100" : "opacity-0"}`}
+        style={{
+          transform: "translate(0, -100%)", // Anchors to bottom-left
+          willChange: "top, left",
+          top: 0,
+          left: 0,
+        }}
+      >
+        {hoveredImage && (
+          <img
+            src={hoveredImage}
+            alt="Project Preview"
+            className="w-full h-auto block"
+          />
+        )}
       </div>
     </section>
   );
