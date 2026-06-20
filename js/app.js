@@ -46,6 +46,68 @@ const Hero = () => {
   );
 };
 
+const Projects = () => {
+  const projects = [
+    {
+      id: "01",
+      title: "SplitTheX",
+      summary:
+        "Expense splitter with custom expense splitting, multi-item expenses, and easy balance settlments.",
+      tech: "Next.js, PostgreSQL",
+      url: "https://github.com/marcocharco/expense-splitter-app",
+    },
+    {
+      id: "02",
+      title: "Contify",
+      summary:
+        "Pull request visualization tool leveraging LSPs and Tree-sitter, providing better context during code reviews.",
+      tech: "Go, Tree-sitter",
+      url: "https://github.com/marcocharco/pr-review-app",
+    },
+    {
+      id: "03",
+      title: "Ribbit",
+      summary:
+        "Decentralized social media protocol on Starknet using Cairo smart contracts.",
+      tech: "Cairo, Starknet",
+      url: "https://github.com/ribbit-forum",
+    },
+  ];
+
+  return (
+    <section className="py-10 relative">
+      <h2 className="text-sm font-medium text-charcoal mb-6">Projects</h2>
+
+      <div className="flex flex-col gap-1">
+        {projects.map((project) => (
+          <a
+            key={project.id}
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-4 p-4 -mx-4 rounded-xl transition-colors hover:bg-black/5 items-start cursor-pointer"
+          >
+            <div className="md:col-span-4 flex flex-col justify-start pointer-events-none">
+              <h3 className="text-sm font-normal text-charcoal">
+                {project.title}
+              </h3>
+              <span className="text-sm font-normal text-charcoal/70 mt-1">
+                {project.tech}
+              </span>
+            </div>
+
+            <div className="md:col-span-8 flex items-start pointer-events-none">
+              <p className="text-sm font-normal leading-relaxed text-charcoal/70">
+                {project.summary}
+              </p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  );
+};
+
 const Experience = () => {
   const history = [
     {
@@ -129,6 +191,7 @@ const App = () => {
     <div className="relative min-h-screen selection:bg-accent selection:text-base font-sans">
       <main className="max-w-3xl mx-auto px-6 md:px-8 relative z-10">
         <Hero />
+        <Projects />
         <Experience />
 
         <footer className="py-12 mt-8 flex justify-center items-center">
