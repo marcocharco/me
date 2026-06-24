@@ -385,9 +385,6 @@ const Experience = () => {
             key={i}
             className="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-4 p-4 -mx-4 rounded-xl hover:bg-black/5 transition-colors items-center"
           >
-            <div className="md:col-span-3 text-sm font-normal text-charcoal/70">
-              {item.years}
-            </div>
             <div className="md:col-span-4 text-sm font-normal text-charcoal">
               {item.url ? (
                 <a
@@ -423,6 +420,9 @@ const Experience = () => {
             </div>
             <div className="md:col-span-5 text-sm font-normal text-charcoal/70">
               {item.role}
+            </div>
+            <div className="md:col-span-3 text-sm font-normal text-charcoal/70 md:text-right">
+              {item.years}
             </div>
           </div>
         ))}
