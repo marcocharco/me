@@ -197,27 +197,27 @@ const Hero = () => {
           <a
             href="assets/Marco_Chen_Resume.pdf"
             target="_blank"
-            className="link-interactive text-charcoal"
+            className="hover:underline underline-offset-2 text-charcoal"
           >
             Resume
           </a>
           <a
             href="https://github.com/marcocharco"
             target="_blank"
-            className="link-interactive text-charcoal"
+            className="hover:underline underline-offset-2 text-charcoal"
           >
             GitHub
           </a>
           <a
             href="https://linkedin.com/in/marcochen1"
             target="_blank"
-            className="link-interactive text-charcoal"
+            className="hover:underline underline-offset-2 text-charcoal"
           >
             LinkedIn
           </a>
           <a
             href="mailto:chenmarco16@gmail.com"
-            className="link-interactive text-charcoal"
+            className="hover:underline underline-offset-2 text-charcoal"
           >
             Email
           </a>
