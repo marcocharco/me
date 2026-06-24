@@ -194,6 +194,7 @@ const Hero = () => {
         </p>
 
         <div className="flex items-center gap-6 text-sm font-normal">
+          {/* Temporarily disabled
           <a
             href="assets/Marco_Chen_Resume.pdf"
             target="_blank"
@@ -201,6 +202,7 @@ const Hero = () => {
           >
             Resume
           </a>
+          */}
           <a
             href="https://github.com/marcocharco"
             target="_blank"
