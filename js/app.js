@@ -356,20 +356,20 @@ const Projects = () => {
 const Experience = () => {
   const history = [
     {
-      years: "2026—2026",
+      years: "May 2026 — Aug 2026",
       org: "Wealthsimple",
       role: "Software Developer Intern",
       url: "https://wealthsimple.com/",
     },
     {
-      years: "2025—2026",
+      years: "Sep 2025 — Apr 2026",
       org: "Tethos",
       orgSuffix: "(Plan International)",
       role: "Lead Software Engineer",
       url: "https://www.tethos.ca/",
     },
     {
-      years: "2025",
+      years: "May 2025 - Aug 2025",
       org: "IDI Consulting Group",
       role: "Software Developer Intern",
     },
