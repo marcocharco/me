@@ -261,6 +261,32 @@ const Projects = () => {
     },
   ];
 
+  const MARGIN = 15;
+
+  const positionPreview = (e) => {
+    const el = previewRef.current;
+    if (!el) return;
+    const W = el.offsetWidth;
+    const H = el.offsetHeight;
+    const vw = document.documentElement.clientWidth;
+    const vh = document.documentElement.clientHeight;
+
+    // horizontal: preview left edge in [MARGIN, vw - MARGIN - W]
+    let left = e.clientX + MARGIN;
+    left = Math.min(left, vw - MARGIN - W);
+    left = Math.max(left, MARGIN);
+
+    // vertical: `top` is the bottom edge (translate -100%)
+    // top edge (top - H) >= MARGIN  -> top >= MARGIN + H
+    // bottom edge (top)  <= vh - MARGIN
+    let top = e.clientY - MARGIN;
+    top = Math.max(top, MARGIN + H);
+    top = Math.min(top, vh - MARGIN);
+
+    el.style.left = `${left}px`;
+    el.style.top = `${top}px`;
+  };
+
   return (
     <section className="py-10 relative">
       <h2 className="text-sm font-medium text-charcoal mb-6">Projects</h2>
@@ -274,17 +300,13 @@ const Projects = () => {
             rel="noopener noreferrer"
             onMouseEnter={(e) => {
               if (project.image) {
-                if (previewRef.current) {
-                  previewRef.current.style.left = `${e.clientX + 15}px`;
-                  previewRef.current.style.top = `${e.clientY - 15}px`;
-                }
+                positionPreview(e);
                 setHoveredImage(project.image);
               }
             }}
             onMouseMove={(e) => {
-              if (project.image && previewRef.current) {
-                previewRef.current.style.left = `${e.clientX + 15}px`;
-                previewRef.current.style.top = `${e.clientY - 15}px`;
+              if (project.image) {
+                positionPreview(e);
               }
             }}
             onMouseLeave={() => setHoveredImage(null)}
