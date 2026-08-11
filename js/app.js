@@ -158,35 +158,14 @@ const ClickSpark = ({
   );
 };
 
-// Custom hook for intersection observer (Fade/Slide up animations)
-const useIntersectionObserver = (
-  options = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
-) => {
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target); // Only animate once
-        }
-      });
-    }, options);
-
-    const elements = document.querySelectorAll(".reveal-element");
-    elements.forEach((el) => observer.observe(el));
-
-    return () => elements.forEach((el) => observer.unobserve(el));
-  }, []);
-};
-
 const Hero = () => {
   return (
-    <section className="flex flex-col justify-center relative reveal-element pt-24 md:pt-32 pb-10">
-      <h1 className="text-l md:text-xl font-medium tracking-tight text-charcoal mb-4 reveal-element delay-100">
+    <section className="flex flex-col justify-center relative pt-24 md:pt-32 pb-10">
+      <h1 className="text-l md:text-xl font-medium tracking-tight text-charcoal mb-4">
         Marco Chen
       </h1>
 
-      <div className="max-w-2xl reveal-element delay-200">
+      <div className="max-w-2xl">
         <p className="text-sm font-normal leading-relaxed tracking-normal mb-4 text-charcoal/70">
           I’m currently a Software Developer intern at Wealthsimple, studying CS
           and Business at Western University. I like to build thoughtful
@@ -241,8 +220,7 @@ const Projects = () => {
         "Expense splitter with custom expense splitting, multi-item expenses, and easy balance settlments.",
       tech: "Next.js, PostgreSQL",
       url: "https://github.com/marcocharco/expense-splitter-app",
-      image:
-        "https://github.com/user-attachments/assets/3e20c99d-0217-4b3c-91fd-4ad0abf1df88",
+      image: "assets/splitthex.gif",
     },
     {
       id: "02",
@@ -358,13 +336,13 @@ const Projects = () => {
 const Experience = () => {
   const history = [
     {
-      years: "May 2026 — Aug 2026",
+      years: "May 2026 - Aug 2026",
       org: "Wealthsimple",
       role: "Software Developer Intern",
       url: "https://wealthsimple.com/",
     },
     {
-      years: "Sep 2025 — Apr 2026",
+      years: "Sep 2025 - Apr 2026",
       org: "Tethos",
       orgSuffix: "(Plan International)",
       role: "Lead Software Engineer",
@@ -434,8 +412,6 @@ const Experience = () => {
 };
 
 const App = () => {
-  useIntersectionObserver();
-
   return (
     <ClickSpark>
       <div className="relative min-h-screen selection:bg-accent selection:text-base font-sans">
@@ -444,7 +420,7 @@ const App = () => {
           <Projects />
           <Experience />
 
-          <footer className="py-12 mt-8 flex justify-center items-center reveal-element">
+          <footer className="py-12 mt-8 flex justify-center items-center">
             <button
               className="text-sm font-normal text-charcoal/70 hover:text-charcoal transition-colors"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
